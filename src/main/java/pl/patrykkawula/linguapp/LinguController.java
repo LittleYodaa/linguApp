@@ -1,5 +1,8 @@
 package pl.patrykkawula.linguapp;
 
+import pl.patrykkawula.linguapp.dataAcces.EntryDataRepository;
+import pl.patrykkawula.linguapp.dataAcces.Entry;
+import pl.patrykkawula.linguapp.dataAcces.EntryService;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -11,15 +14,15 @@ public class LinguController {
 
     private final static int MAX_TEST_LENGHT = 10;
     private final Scanner scanner;
-    private final EntryRepository entryRepository;
-    private final FileService fileService;
+    private final EntryService entryRepository;
+    private final EntryDataRepository dataService;
 
     private final ConsoleOutputWriter consoleOutputWriter;
 
-    public LinguController(EntryRepository entryRepository, FileService fileService, Scanner scanner, ConsoleOutputWriter consoleOutputWriter) {
-        this.entryRepository = entryRepository;
-        this.fileService = fileService;
+    public LinguController(Scanner scanner, EntryService entryRepository, EntryDataRepository dataService, ConsoleOutputWriter consoleOutputWriter) {
         this.scanner = scanner;
+        this.entryRepository = entryRepository;
+        this.dataService = dataService;
         this.consoleOutputWriter = consoleOutputWriter;
     }
 
@@ -78,7 +81,7 @@ public class LinguController {
 
     private void exit() {
         try {
-            fileService.saveEntryInFile(entryRepository.getAll());
+            dataService.saveEntry(entryRepository.getAll());
             consoleOutputWriter.println("Zapisano do pliku");
         } catch (IOException e) {
             throw new RuntimeException(e);

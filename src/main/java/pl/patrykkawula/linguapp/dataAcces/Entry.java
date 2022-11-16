@@ -1,8 +1,16 @@
-package pl.patrykkawula.linguapp;
+package pl.patrykkawula.linguapp.dataAcces;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Entry {
+    @Id
     private String original;
     private String translation;
+
+    public Entry() {
+    }
 
     public Entry(String original, String translation) {
         this.original = original;

@@ -1,6 +1,6 @@
-package pl.patrykkawula.linguapp;
+package pl.patrykkawula.linguapp.dataAcces;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-@Repository
-public class EntryRepository {
-    private FileService fileService;
+@Service
+public class EntryService {
+    private EntryDataRepository dataService;
     private List<Entry> entries;
 
-    public EntryRepository(FileService fileService) {
-        this.fileService = fileService;
+    public EntryService(EntryDataRepository dataService) {
+        this.dataService = dataService;
         try {
-            this.entries = fileService.readAllLines();
+            this.entries = dataService.returnEntry();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
