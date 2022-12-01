@@ -21,6 +21,9 @@ public class EntryService {
             throw new RuntimeException(e);
         }
     }
+    public void updateEntry(Entry entry) {
+    }
+
     public Set<Entry> getRandomEntries(int number) {
         Random random = new Random();
         Set<Entry> entrySet = new HashSet<>();
