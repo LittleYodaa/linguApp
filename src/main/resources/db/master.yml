@@ -5,3 +5,10 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/0001_create_table_entry.sql
+  - changeSet:
+      id: 0001_entries
+      author: patryk.kawula
+      context: dev
+      changes:
+        - sqlFile:
+            path: db/testdata/0001_entries.sql
