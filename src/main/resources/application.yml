@@ -3,10 +3,12 @@ app:
     data.csv
 spring:
   profiles:
-    active: dev
+    active: prod
   h2:
     console:
       enabled: true
+  liquibase:
+    change-log: db/master.yml
 data:
   save:
     mode: database

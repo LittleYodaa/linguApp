@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001_create_table_entry
+      author: patryk.kawula
+      changes:
+        - sqlFile:
+            path: db/0001_create_table_entry.sql

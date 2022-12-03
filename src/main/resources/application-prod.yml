@@ -1,8 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost.3306/spring
+    url: jdbc:mysql://localhost:3306/words
     username: root
     password: Funraiser1
     driver-class-name: com.mysql.cj.jdbc.Driver
-  liquibase:
-    contexts: prod
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
