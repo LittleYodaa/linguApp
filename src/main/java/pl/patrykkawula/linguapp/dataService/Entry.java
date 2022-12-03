@@ -1,4 +1,4 @@
-package pl.patrykkawula.linguapp.dataAcces;
+package pl.patrykkawula.linguapp.dataService;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

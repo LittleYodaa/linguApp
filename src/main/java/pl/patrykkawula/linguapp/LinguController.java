@@ -1,8 +1,8 @@
 package pl.patrykkawula.linguapp;
 
-import pl.patrykkawula.linguapp.dataAcces.EntryDataRepository;
-import pl.patrykkawula.linguapp.dataAcces.Entry;
-import pl.patrykkawula.linguapp.dataAcces.EntryService;
+import pl.patrykkawula.linguapp.dataService.SavingService;
+import pl.patrykkawula.linguapp.dataService.Entry;
+import pl.patrykkawula.linguapp.dataService.EntryService;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -15,13 +15,13 @@ public class LinguController {
     private final static int MAX_TEST_LENGHT = 10;
     private final Scanner scanner;
     private final EntryService entryRepository;
-    private final EntryDataRepository dataService;
+    private final SavingService dataService;
 
     private final ConsoleOutputWriter consoleOutputWriter;
 
-    public LinguController(Scanner scanner, EntryService entryRepository, EntryDataRepository dataService, ConsoleOutputWriter consoleOutputWriter) {
+    public LinguController(Scanner scanner, EntryService entryService, SavingService dataService, ConsoleOutputWriter consoleOutputWriter) {
         this.scanner = scanner;
-        this.entryRepository = entryRepository;
+        this.entryRepository = entryService;
         this.dataService = dataService;
         this.consoleOutputWriter = consoleOutputWriter;
     }

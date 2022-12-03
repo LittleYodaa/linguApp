@@ -1,8 +1,8 @@
-package pl.patrykkawula.linguapp.dataAcces;
+package pl.patrykkawula.linguapp.dataService;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Repository;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
 import pl.patrykkawula.linguapp.cipher.Encryption;
 
 import java.io.BufferedWriter;
@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Repository
-@Profile("file")
-public class EntryFileRepository implements EntryDataRepository {
+@Service
+@ConditionalOnProperty(name = "data.save.mode", havingValue = "file")
+public class FileSavingService implements SavingService {
 
     private final String fileName;
 
     private Encryption encryption;
 
-    public EntryFileRepository(@Value("${app.filename}") String fileName, Encryption encryption) {
+    public FileSavingService(@Value("${app.filename}") String fileName, Encryption encryption) {
         this.fileName = fileName;
         this.encryption = encryption;
     }
@@ -31,7 +31,7 @@ public class EntryFileRepository implements EntryDataRepository {
         return Files.readAllLines(Paths.get(fileName))
                 .stream()
                 .map(encryption::decipher)
-                .map(EntryFileRepository::splitLine)
+                .map(FileSavingService::splitLine)
                 .collect(Collectors.toList());
     }
 

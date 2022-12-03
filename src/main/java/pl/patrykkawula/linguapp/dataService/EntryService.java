@@ -1,4 +1,4 @@
-package pl.patrykkawula.linguapp.dataAcces;
+package pl.patrykkawula.linguapp.dataService;
 
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Service
 public class EntryService {
-    private EntryDataRepository dataService;
-    private List<Entry> entries;
+    private final SavingService savingService;
+    private final List<Entry> entries;
 
-    public EntryService(EntryDataRepository dataService) {
-        this.dataService = dataService;
+    public EntryService(SavingService savingService) {
+        this.savingService = savingService;
         try {
-            this.entries = dataService.returnEntry();
+            this.entries = savingService.returnEntry();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
