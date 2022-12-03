@@ -3,7 +3,7 @@ app:
     data.csv
 spring:
   profiles:
-    active: dev
+    active: prod
   h2:
     console:
       enabled: true
